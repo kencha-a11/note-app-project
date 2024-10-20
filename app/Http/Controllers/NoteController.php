@@ -97,5 +97,4 @@ class NoteController extends Controller
     
     return redirect()->route('dashboard')->with('success', 'Note deleted successfully.');
 }
-
 }

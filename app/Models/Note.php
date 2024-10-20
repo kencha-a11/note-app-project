@@ -18,4 +18,5 @@ class Note extends Model
     {
         $this->belongsTo(User::class);
     }
+
 }
