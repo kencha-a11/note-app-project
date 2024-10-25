@@ -4,20 +4,20 @@
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
-    return redirect()->route('home-page');
+    return redirect()->route('home-page'); // working
 });
 
 use App\Http\Controllers\AuthController;
-    route::get('/home-page',[AuthController::class,'home'])->name('home-page');
-    Route::get('/register-form', [AuthController::class, 'registerForm'])->name('register-form');
-    Route::post('/register', [AuthController::class, 'register'])->name('register-post');
-    Route::get('/login-form', [AuthController::class, 'loginForm'])->name('login-form');
-    Route::post('/login', [AuthController::class, 'login'])->name('login-post');
-    Route::post('/logout', [AuthController::class, 'logout'])->name('logout-post');
+    route::get('/home/page',[AuthController::class,'home'])->name('home-page'); // working
+    Route::get('/register/form', [AuthController::class, 'registerForm'])->name('register-form'); // working
+    Route::post('/register', [AuthController::class, 'register'])->name('register-post'); // working
+    Route::get('/login/form', [AuthController::class, 'loginForm'])->name('login-form'); // working
+    Route::post('/login', [AuthController::class, 'login'])->name('login-post'); // working
+    Route::post('/logout', [AuthController::class, 'logout'])->name('logout-post'); // working
 
-    use App\Http\Controllers\UserController;
-    use App\Http\Controllers\NoteController;
-    use App\Http\Controllers\PageController;
+use App\Http\Controllers\UserController;
+use App\Http\Controllers\NoteController;
+use App\Http\Controllers\PageController;
     Route::middleware(['auth'])->group(function () {
         Route::get('/dashboard', [PageController::class, 'dashboard'])->name('dashboard');
 

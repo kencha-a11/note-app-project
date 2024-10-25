@@ -3,54 +3,92 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Create Note</title>
-    <link rel="stylesheet" href="{{ asset('css/app.css') }}"> <!-- Link to your CSS file -->
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Edit Note</title>
+    <link rel="stylesheet" href="{{asset('css/globalstyle.css')}}">
+    <link rel="stylesheet" href="{{asset('css/editnote.css')}}">
 </head>
 <body>
-    <div class="container mx-auto mt-5">
-        <h1 class="text-2xl font-bold">Edit Note</h1>
+    <div class="main-container">
+       <div class="note-container">
 
-        <!-- Display validation errors -->
-        @if ($errors->any())
-            <div class="bg-red-500 text-white p-4 rounded">
-                <ul>
-                    @foreach ($errors->all() as $error)
-                        <li>{{ $error }}</li>
-                    @endforeach
-                </ul>
-            </div>
-        @endif
-
-        <!-- Note creation form -->
-        <form action="{{ route('notes.update', $note) }}" method="POST">
-            @csrf <!-- CSRF token for security -->
+        <form id="dashboard.html" class="note-form" action="{{ route('notes.update', $note->id) }}" method="POST" onsubmit="return validateNoteForm()" novalidate>
+            @csrf
             @method('PUT')
-            <div class="mb-4">
-                <label for="title" class="block text-sm font-medium text-gray-700">Title</label>
-                <input type="text" id="title" name="title" value="{{ $note->title }}" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring focus:ring-opacity-50" required>
+
+            <h2>Edit Note</h2>
+            
+            <div class="input-group">
+
+                <label for="title">Title:</label><br>
+                <input type="text" id="title" name="title" value="{{ $note->title }}" required>
+
+                <small id="noteTitleError" class="error-message"></small>
+            </div>
+            
+            <div class="input-group">
+                
+                <label for="description">Note Description</label>
+                <input type="text" id="description" name="description" value="{{ $note->description }}" required>
+
+                <small id="noteDescriptionError" class="error-message"></small>
+            </div>
+            
+            <div class="input-group">
+
+                <label for="content">Note Content</label>
+                <textarea id="content" name="content" rows="10" required>{{ $note->content }}</textarea>
+
+                <small id="noteContentError" class="error-message"></small>
             </div>
 
-            <div class="mb-4">
-                <label for="description" class="block text-sm font-medium text-gray-700">Description</label>
-                <input type="text" id="description" name="description" value="{{ $note->description }}" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring focus:ring-opacity-50" required>
-            </div>
-
-            <div class="mb-4">
-                <label for="content" class="block text-sm font-medium text-gray-700">Content</label>
-                <textarea id="content" name="content" rows="4" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring focus:ring-opacity-50" required>{{ $note->content }}</textarea>
-            </div>
-
-            <div>
-                <button type="submit" class="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">
-                    update Note
-                </button>
-            </div>
+            <button type="submit" class="note-btn">Save Note</button>
         </form>
 
-        <!-- Link back to notes index -->
-        <div class="mt-4">
-            <a href="{{ route('dashboard') }}" class="text-blue-600 hover:underline">return to dashboard</a>
-        </div>
-    </div>
+        <form id="deleteForm" class="note-form" action="{{ route('notes.destroy', $note->id) }}" method="POST" novalidate>
+            @csrf
+            @method('DELETE')
+            <button type="button" class="note-btn" onclick="deleteNote()">Delete Note</button>
+        </form>
+        
+
+<a href="{{route('notes.show', $note)}}" class="link-button">Back</a>
+</div>
+</div>
+<script src="{{asset('js/editnote.js')}}"></script>
+
 </body>
 </html>
+
+
+
+{{-- <h1>Edit Note</h1> <br>
+<form action="{{ route('notes.update', $note->id) }}" method="POST">
+    @csrf
+    @method('PUT') <!-- This ensures it's a PUT request -->
+
+    <label for="title">Title:</label><br>
+    <input type="text" id="title" name="title" value="{{ $note->title }}" required><br><br>
+
+    <label for="description">Description:</label><br>
+    <input type="text" id="description" name="description" value="{{ $note->description }}" required><br><br>
+
+    <label for="content">Content:</label><br>
+    <textarea id="content" name="content" rows="10" cols="30" required>{{ $note->content }}</textarea><br><br>
+
+    <input type="submit" value="Update Note">
+</form> <br>
+
+<form action="{{ route('notes.destroy', $note->id) }}" method="POST">
+    @csrf
+    @method('DELETE') <!-- Method override for DELETE request -->
+
+    <button type="submit" onclick="return confirm('Are you sure you want to delete this note?')">Delete Note</button>
+</form>
+<hr>
+
+
+<a href="{{route('home-page')}}">home</a> <br>
+<a href="{{route('login-form')}}">login</a> <br>
+<a href="{{route('register-form')}}">register</a> <br>
+<a href="{{route('dashboard')}}">dashboard</a> --}}

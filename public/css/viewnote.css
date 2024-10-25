@@ -1,0 +1,139 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    min-height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0;
+}
+
+.view-container {
+    width: 100%;
+    height: 100vh; /* Ensure it fills the viewport height */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(135deg, #b2badb 0%, #000000 100%);
+    padding: 20px; /* Add padding to avoid content touching edges */
+    box-sizing: border-box;
+
+    animation: fadeInUp 0.5s forwards; /* Animation on load */
+    opacity: 0;
+    transform: translateY(20px);
+}
+
+.note-container {
+    max-width: 600px;
+    width: 100%;
+    max-height: 90vh; /* Limit the height to avoid overflow */
+    background-color: rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    border-radius: 20px;
+    box-sizing: border-box; /* Add this for proper sizing */
+    flex: 1;
+    overflow-y: auto; /* Enable scrolling */
+}
+
+.note-details {
+    padding: 10px;
+
+    /* display: flex; */
+    flex-wrap: wrap; /* Allow items to wrap onto new lines */
+    justify-content: space-between;
+
+    gap: 10px; /* Only use one justify-content for consistent spacing */
+
+    align-items: center;
+    align-content: center;
+}
+
+/* Title of the note */
+.note-title {
+    font-size: 24px;
+    text-align: center;
+    margin-bottom: 20px;
+    color: white;
+}
+
+/* Note details */
+.note-details h2 {
+    font-size: 18px;
+    margin-bottom: 5px;
+    color: white;
+}
+
+.scrollable-container {
+    max-height: 300px; /* Set the height of the scrollable area */
+    overflow-y: auto; /* Enable vertical scrolling */
+    padding: 20px;
+    border-radius: 5px;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    border-radius: 20px;
+}
+
+/* Note field */
+.note-field {
+    font-size: 16px;
+    margin-bottom: 20px;
+    padding: 10px;
+    background-color: rgba(0, 0, 0, 0.001);
+    border-radius: 4px;
+    color: rgba(255, 255, 255, 0.6);
+}
+
+/* Button styles */
+.note-actions {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+}
+
+.btn {
+    padding: 10px 20px;
+    font-size: 16px;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.btn:hover{
+    background-color: rgba(0, 0, 0, 0.2);
+}
+
+.back-btn {
+    background-color: rgba(104, 104, 104, 0.1);
+    color: #fcfcfc;
+    padding: 10px 30px;
+}
+
+.edit-btn {
+    background-color: rgba(104, 104, 104, 0.1);
+    color: #fcfcfc;
+    padding: 10px 30px;
+}
+
+/* Responsive design */
+@media (max-width: 600px) {
+    .note-actions {
+        flex-direction: row;
+        gap: 10px;
+    }
+
+    .btn {
+        width: 100%;
+    }
+}
+
+.fixed-textarea {
+    width: 400px;
+    height: 150px;
+    padding: 10px;
+    font-size: 16px;
+    border: 2px solid #3498db;
+    border-radius: 5px;
+    resize: none; /* Prevents resizing */
+    font-family: Arial, sans-serif;
+}

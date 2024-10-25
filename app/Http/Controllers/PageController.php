@@ -11,7 +11,7 @@ class PageController extends Controller
     $user = Auth::user(); // Get the authenticated user
     $notes = $user->notes; // Get the user's notes
 
-    return view('dashboard', [
+    return view('main.dashboard', [
         'user' => $user,
         'notes' => $notes,
     ]);

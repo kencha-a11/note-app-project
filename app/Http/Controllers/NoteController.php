@@ -82,9 +82,10 @@ class NoteController extends Controller
         ]);
 
         $this->authorize('update', $note);
+        
         $note->update($request->all());
 
-        return redirect()->route('dashboard')->with('success', 'Note updated successfully.');
+        return redirect()->route('notes.show', $note)->with('success', 'Note updated successfully.');
     }
 
     public function destroyNote(Note $note)

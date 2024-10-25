@@ -11,15 +11,20 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('notes', function (Blueprint $table) {
-            $table->id();
-            $table->foreignId('user_id')->constrained()->onDelete('cascade');
-            $table->string('title');
-            $table->string('description');
-            $table->string('content');
+        if (!Schema::hasTable('notes')) {
+            Schema::create('notes', function (Blueprint $table) {
+                $table->id();
+                $table->unsignedBigInteger('user_id');  // Foreign key for the user
+                $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
 
-            $table->timestamps();
-        });
+                // Other columns for the note
+                $table->string('title');
+                $table->string('description');
+                $table->text('content');
+
+                $table->timestamps();
+            });
+        }
     }
 
     /**
@@ -27,6 +32,12 @@ return new class extends Migration
      */
     public function down(): void
     {
+        Schema::table('notes', function (Blueprint $table) {
+            // Drop the foreign key and the user_id column before dropping the table
+            $table->dropForeign(['user_id']);
+            $table->dropColumn('user_id');
+        });
+        
         Schema::dropIfExists('notes');
     }
 };

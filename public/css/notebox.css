@@ -1,0 +1,75 @@
+
+
+.note-box {
+    display: block; /* Ensures the entire area is clickable */
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+
+    width: 100%;
+    flex-wrap: wrap;
+
+    border: 2px solid rgba(0, 0, 0, 0.1);
+    border-radius: 20px;
+    padding: 25px;
+    width: 100%;
+    max-width: 300px; /* Maximum width for larger screens */
+    height: 100%;
+    max-height: 400px;
+    background-color: rgba(248, 248, 248, 0.2);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+    text-decoration: none; /* Remove underline */
+    color: inherit; /* Inherit text color from parent */
+    transition: transform 0.2s; /* Smooth transition for hover effect */
+}
+
+/* Hover effect */
+.note-box:hover {
+    transform: scale(1.02); /* Slightly scale up on hover */
+}
+
+.box-container{
+    display: flex;
+    flex-wrap: wrap;
+    color: #1a1a1a;
+}
+
+.note-box h2 {
+    margin: 0 0 10px;
+    font-size: 1.5em;
+    color: rgb(255, 255, 255);
+}
+
+.note-box h3 {
+    margin: 0 0 10px;
+    font-size: 1.5em;
+    color: rgb(168, 168, 168);
+}
+
+.note-box p {
+    margin: 0;
+    font-size: 1em;
+    color: rgb(221, 221, 221);
+}
+
+.sidebar ul li a{
+    font-weight: bold;
+}
+
+/* Responsive adjustments */
+@media (max-width: 550px) {
+    .note-box {
+        padding: 15px;
+        max-width: 500px;
+    }
+
+    .note-box h2 {
+        font-size: 1.3em;
+    }
+
+    .note-box p {
+        font-size: 0.9em;
+    }
+
+}

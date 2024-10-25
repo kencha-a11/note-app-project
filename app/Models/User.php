@@ -22,6 +22,7 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'bio',
     ];
 
     /**
@@ -48,8 +49,14 @@ class User extends Authenticatable
     }
 
     public function notes()
-    {
-        return $this->hasMany(Note::class);
-    }
+{
+    return $this->hasMany(Note::class);
+}
+
+
+    // public function reminders()
+    // {
+    //     return $this->hasOne(related: Reminder::class); // done
+    // }
     
 }

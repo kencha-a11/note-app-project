@@ -11,11 +11,11 @@ class AuthController extends Controller
 {
     public function home()
     {
-        return view('home-page');
+        return view('main.home-page');
     }
     public function registerForm()
     {
-        return view('Auth.register');
+        return view('auth.register');
     }
 
     public function register(Request $request)
@@ -32,7 +32,10 @@ class AuthController extends Controller
             'name' => $request->name,
             'email' => $request->email,
             'password' => Hash::make($request->password), // Hash the password
+            'bio' => 'welcome to note',
         ]);
+
+        // User::create($request->all()); //working
     
         return redirect()->route('login-form')->with('success', 'Registration successful. You can now log in.');
     }
@@ -41,7 +44,7 @@ class AuthController extends Controller
 
     public function loginForm()
     {
-        return view('Auth.login');
+        return view('auth.login');
     }
 
     public function login(Request $request)
@@ -58,12 +61,12 @@ class AuthController extends Controller
             return redirect()->intended(route('dashboard'))->with('success', 'Logged in successfully.'. $userId);
         }
 
-        return back()->withErrors(['email' => 'The provided credentials do not match our records.']);
+        return back(); //->withErrors(['email' => 'The provided credentials do not match our records.']);
     }
 
     public function logout()
     {
         Auth::logout();
-        return redirect()->route('login-form')->with('success', 'Logged out successfully.');
+        return redirect()->route('login-form'); //->with('success', 'Logged out successfully.');
     }
 }

@@ -11,12 +11,11 @@ class Note extends Model
 
 
     protected $fillable = [
-        'user_id', 'title', 'description', 'content'
+         'title', 'description', 'content', 'user_id'
     ];
 
-    public function users()
-    {
-        $this->belongsTo(User::class);
-    }
-
+    public function user()
+{
+    return $this->belongsTo(User::class);
+}
 }

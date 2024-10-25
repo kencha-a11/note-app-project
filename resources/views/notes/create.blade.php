@@ -3,53 +3,71 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Create Note</title>
-    <link rel="stylesheet" href="{{ asset('css/app.css') }}"> <!-- Link to your CSS file -->
+    <link rel="stylesheet" href="{{asset('css/globalstyle.css')}}">
+    <link rel="stylesheet" href="{{asset('css/createnote.css')}}">
 </head>
 <body>
-    <div class="container mx-auto mt-5">
-        <h1 class="text-2xl font-bold">Create a New Note</h1>
-
-        <!-- Display validation errors -->
-        @if ($errors->any())
-            <div class="bg-red-500 text-white p-4 rounded">
-                <ul>
-                    @foreach ($errors->all() as $error)
-                        <li>{{ $error }}</li>
-                    @endforeach
-                </ul>
+    <div class="main-container">
+       <div class="note-container">
+        <form id="dashboard.html" class="note-form" action="{{ route('notes.store') }}" method="POST" onsubmit="return validateNoteForm()" novalidate>
+            @csrf
+            <h2>Create Note</h2>
+        
+            <div class="input-group">
+                <label for="title">Note Title</label>
+                <input type="text" id="title" name="title" placeholder="Enter the note title" required>
+                <small id="noteTitleError" class="error-message"></small>
             </div>
-        @endif
-
-        <!-- Note creation form -->
-        <form action="{{ route('notes.store') }}" method="POST">
-            @csrf <!-- CSRF token for security -->
-            <div class="mb-4">
-                <label for="title" class="block text-sm font-medium text-gray-700">Title</label>
-                <input type="text" id="title" name="title" value="{{ old('title') }}" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring focus:ring-opacity-50" required>
+        
+            <div class="input-group">
+                <label for="description">Note Description</label>
+                <input type="text" id="description" name="description" placeholder="Enter the note description" required>
+                <small id="noteDescriptionError" class="error-message"></small>
             </div>
-
-            <div class="mb-4">
-                <label for="description" class="block text-sm font-medium text-gray-700">Description</label>
-                <input type="text" id="description" name="description" value="{{ old('description') }}" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring focus:ring-opacity-50" required>
+        
+            <div class="input-group">
+                <label for="content">Note Content</label>
+                <textarea id="content" name="content" rows="10" placeholder="Write your note here..." required></textarea>
+                <small id="noteContentError" class="error-message"></small>
             </div>
-
-            <div class="mb-4">
-                <label for="content" class="block text-sm font-medium text-gray-700">Content</label>
-                <textarea id="content" name="content" rows="4" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring focus:ring-opacity-50" required>{{ old('content') }}</textarea>
-            </div>
-
-            <div>
-                <button type="submit" class="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">
-                    Create Note
-                </button>
-            </div>
+        
+            <button type="submit" class="note-btn">Create Note</button>
         </form>
-
-        <!-- Link back to notes index -->
-        <div class="mt-4">
-            <a href="{{ route('dashboard') }}" class="text-blue-600 hover:underline">Back to Notes</a>
-        </div>
+        
+        <a href="{{route('dashboard')}}" class="link-button">Back</a>
     </div>
+    </div>
+    <script src="{{asset('js/createnote.js')}}"></script>
+
 </body>
 </html>
+
+
+
+
+
+{{-- 
+<h1>Create Note</h1> <br>
+
+<form action="{{ route('notes.store') }}" method="POST">
+    @csrf
+
+    <label for="title">Title:</label><br>
+    <input type="text" id="title" name="title" required><br><br>
+
+    <label for="description">Description:</label><br>
+    <input type="text" id="description" name="description" required><br><br>
+
+    <label for="content">Content:</label><br>
+    <textarea id="content" name="content" rows="10" cols="30" required></textarea><br><br>
+
+    <input type="submit" value="Create Note">
+</form>
+<hr>
+
+<a href="{{route('home-page')}}">home</a> <br>
+<a href="{{route('login-form')}}">login</a> <br>
+<a href="{{route('register-form')}}">register</a> <br>
+<a href="{{route('dashboard')}}">dashboard</a> --}}

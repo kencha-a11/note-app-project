@@ -3,12 +3,16 @@
 namespace Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
+use App\Models\Note;
+use App\Models\User;
 
 /**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\odel=Note>
+ * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Note>
  */
 class NoteFactory extends Factory
 {
+    protected $model = Note::class;
+
     /**
      * Define the model's default state.
      *
@@ -17,11 +21,10 @@ class NoteFactory extends Factory
     public function definition(): array
     {
         return [
-            'user_id'=>\App\Models\User::factory(),
-            'title'=> $this->faker->text(20),
-            'description'=>$this->faker->sentence(2),
-            'content'=>$this->faker->paragraph(3),
-
+            'title' => $this->faker->sentence,
+            'description' => $this->faker->sentence,
+            'content' => $this->faker->paragraph,
+            'user_id' => User::factory(), // This creates a new user for each note if not passed explicitly
         ];
     }
 }

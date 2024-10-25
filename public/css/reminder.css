@@ -1,0 +1,77 @@
+/* Global Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+}
+
+main {
+    display: flex;
+    padding: 20px;
+}
+
+.main-content {
+    flex: 1;
+    padding-right: 20px;
+}
+
+.right-sidebar {
+    width: 300px;
+    background-color: #f4f4f4;
+    padding: 20px;
+    box-shadow: -2px 0px 5px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+}
+
+.right-sidebar.hidden {
+    transform: translateX(100%);
+}
+
+.sidebar-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.reminder-list {
+    list-style-type: none;
+    margin-top: 20px;
+}
+
+.reminder-list li {
+    margin-bottom: 10px;
+    font-size: 16px;
+    background-color: #ffffff;
+    padding: 10px;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+button {
+    background-color: #333;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background 0.3s;
+}
+
+button:hover {
+    background-color: #555;
+}
+
+/* Hide sidebar on small screens */
+@media (max-width: 768px) {
+    .right-sidebar {
+        transform: translateX(100%);
+    }
+
+    .right-sidebar.active {
+        transform: translateX(0);
+    }
+}

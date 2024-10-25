@@ -5,6 +5,8 @@ namespace Database\Seeders;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use App\Models\Note;
+use App\Models\User;
+use League\CommonMark\Node\Block\Paragraph;
 
 class NoteSeeder extends Seeder
 {
@@ -13,6 +15,15 @@ class NoteSeeder extends Seeder
      */
     public function run(): void
     {
-        Note::factory(1)->create();
+        $users = User::all();
+
+            foreach ($users as $user) {
+                Note::create([
+                    'title' => fake()->sentence(1),
+                    'description' => fake()->sentence(2),
+                    'content' => fake()->paragraph(1),
+                    'user_id' => $user->id,
+                ]);
+            }
     }
 }
