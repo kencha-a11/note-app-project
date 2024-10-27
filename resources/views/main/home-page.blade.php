@@ -3,7 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">     {{-- updated rendering internet exlorer --}}   
+    <link rel="icon" href="{{ asset('assets/img/logo.ico') }}" type="image/x-icon">
     <title>Home - Note Application</title>
     <link rel="stylesheet" href="{{asset('css/globalstyle.css')}}">
     <link rel="stylesheet" href="{{asset('css/home.css')}}">
@@ -30,7 +31,7 @@
         <main>
             <div class="hero-section">
                 <div class="hero-container">
-                    <h2>Welcome to NoteApp</h2>
+                    <h2>Welcome to Silver Note</h2>
                     <p>Effortlessly organize, create, and manage all your notes in one place.</p>
                     <a href="{{route('login-form')}}" class="btn">Get Started</a>
                 </div>

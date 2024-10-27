@@ -83,6 +83,7 @@ header h1 {
     padding: 20px;
     transition: margin-left 0.3s ease;
     overflow-y: auto; /* Add scroll if content overflows */
+
 }
 
 .main-header{
@@ -112,8 +113,12 @@ header h1 {
 
 .box-container{
     display: flex;
-    justify-content: space-around;
+    justify-content: space-evenly;
     gap: 10px;
+
+    align-content: center;
+    align-items: center;
+    
 }
 
 .note-box {

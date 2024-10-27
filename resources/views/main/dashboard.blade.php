@@ -3,6 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">     {{-- updated rendering internet exlorer --}}   
+    <link rel="icon" href="{{ asset('assets/img/logo.ico') }}" type="image/x-icon">
+
     <title>Toggle Sidebar</title>
     <link rel="stylesheet" href="{{asset('css/dashboard.css')}}">
     <link rel="stylesheet" href="{{asset('css/notebox.css')}}">
@@ -68,6 +71,15 @@
                         </div>
                     </div>
                 <hr>
+
+                <h3><a href="#header">Return</a></h3> 
+                <style>
+                    h3 a{
+                        color: white;
+                        text-decoration: none;
+                        font-weight: bold;
+                    }
+                </style>
                 <!-- <a href="#header">return <header></header></a> -->
             </header>
             <!-- Right Sidebar -->
