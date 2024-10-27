@@ -39,6 +39,10 @@ use App\Http\Controllers\PageController;
         Route::get('/notes/{note}/edit', [NoteController::class, 'editNote'])->name('notes.edit'); // Edit a specific note
         Route::put('/notes/{note}', [NoteController::class, 'updateNote'])->name('notes.update'); // Update a specific note
         Route::delete('/notes/{note}', [NoteController::class, 'destroyNote'])->name('notes.destroy'); // Delete a specific note
+
+        Route::post('/users/{user}/notes/search', [NoteController::class, 'search'])->name('note.search');
+
+
     });
 
     

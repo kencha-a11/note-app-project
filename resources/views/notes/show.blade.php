@@ -23,6 +23,13 @@
                 <div class="scrollable-container">
                     <p class="note-field">{{$note->content}} </p> <br>
                 </div>
+
+                <h2>History</h2>
+                <div class="scrollable-container">
+                    <p class="note-field">updated: {{$note->updated_at}} </p> <br>
+
+                    <p class="note-field">created: {{$note->created_at}} </p> <br>
+                </div>
             </div>
     
             <div class="note-actions">

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Note;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
@@ -89,13 +90,39 @@ class NoteController extends Controller
     }
 
     public function destroyNote(Note $note)
-{
-    // Authorize the user for this action
-    $this->authorize('delete', $note);
+    {
+        // Authorize the user for this action
+        $this->authorize('delete', $note);
+        
+        // Proceed to delete the note
+        $note->delete();
+        
+        return redirect()->route('dashboard')->with('success', 'Note deleted successfully.');
+    }
+
+    public function search(Request $request, $userId)
+    {
+        $keyword = $request->input('keyword');
+        $user = User::find($userId);
     
-    // Proceed to delete the note
-    $note->delete();
+        if (!$user) {
+            return redirect()->route('dashboard')->with('failed', 'Unsuccessful search note');
+        }
     
-    return redirect()->route('dashboard')->with('success', 'Note deleted successfully.');
-}
+        $notes = $user->notes()
+            ->where(function($query) use ($keyword) {
+                $query->where('title', 'like', "%{$keyword}%")
+                      ->orWhere('content', 'like', "%{$keyword}%");
+            })
+            ->get();
+    
+        return view('main.dashboard', [
+            'user' => $user,
+            'notes' => $notes,
+            'success' => 'Successfully searched note'
+        ]);
+    }
+    
+
+    
 }

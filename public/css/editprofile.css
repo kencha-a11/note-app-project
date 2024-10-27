@@ -99,7 +99,7 @@ body{
 }
 
 .profile-btn {
-    background-color: rgba(0, 0, 0, 0.7); /* Blue background */
+    background-color: rgba(255, 255, 255, 0.1); /* Blue background */
     color: white; /* White text */
     border: none; /* No border */
     border-radius: 5px; /* Slightly rounded corners */
@@ -111,8 +111,8 @@ body{
 }
 
 .profile-btn:hover {
-    background-color: #0a0a0a; /* Darker blue on hover */
-    transform: translateY(-2px); /* Slight lift effect */
+    background-color: #303030; /* Darker blue on hover */
+    transform: translateY(-2px);
 }
 
 .profile-btn:focus {
